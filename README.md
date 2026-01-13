@@ -1,1 +1,39 @@
 # Web-Dev
+
+## 🎧 Music Player – DOM Structure
+
+```
+.player
+├── .song-info
+│ ├── img.cover
+│ ├── h2.title
+│ └── p.artist
+│
+├── audio#audio
+│
+├── .progress-container
+│ ├── input.progress
+│ ├── span.current-time
+│ └── span.duration
+│
+├── .controls
+│ ├── button#prev
+│ ├── button#play
+│ └── button#next
+│
+└── .volume
+└── input.volume-slider
+
+
+What this does:
+
+Fixed width
+
+Centered
+
+Dark UI
+
+Rounded corners
+
+Padding
+```
