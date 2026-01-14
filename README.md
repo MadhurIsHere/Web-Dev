@@ -37,3 +37,5 @@ Rounded corners
 
 Padding
 ```
+
+git pull --no-rebase origin main -> when you need to merge two branches without caring about the stuff they have (no conflict should be there)
