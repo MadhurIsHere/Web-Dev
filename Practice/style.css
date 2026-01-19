@@ -1,0 +1,20 @@
+.eye {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pupil {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 9999px;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    transition: transform 0.08s linear;
+  }
+  

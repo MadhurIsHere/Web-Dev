@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Table</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #100f0f;
+            width: 100%;
+            height: 100vh;
+        }
+        .h1{
+            text-align: center;
+            color: #d0cbcb;
+        }
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+        th,td{
+            border: 1px solid rgb(11, 11, 11);
+            /* border-radius: 20%; */
+            padding:8px;
+            background: #70b2da;
+            text-align: center;
+        }
+        .toprow,.heading{
+            padding: 10px;
+            background: #1a79e4;
+        }
+        .heading,table tr:nth-child(1) > *
+        {
+            background: #363bdb;
+        }
+        .break{
+          padding: 0px;
+          margin: 0px;
+          background-color: brown;
+        }
+    </style>
+  </head>
+  <body>
+    <h1 class="h1">Time Table</h1>
+    <table>
+      <tr>
+        <th class="heading">Day</th>
+        <th>09:10-10:00</th>
+        <th>10:00-10:50</th>
+        <th>10:50-11:40</th>
+        <th>11:40-12:30</th>
+        <th class="break">12:30-01:30</th>
+        <th>01:30-02:30</th>
+        <th>02:30-03:20</th>
+        <th>03:20-04:10</th>
+        <th>04:10-05:10</th>
+      </tr>
+      <tr>
+        <td class="heading">Monday</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td class="break">BREAK</td>
+        <td>TOC</td>
+        <td>Cyber Ethies</td>
+        <td>Cyber Ethies</td>
+        <td>DBMS</td>
+      </tr>
+      <tr>
+        <td class="heading">Tuesday</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td class="break">BREAK</td>
+        <td>TOC</td>
+        <td>DBMS</td>
+        <td>DSA LAB</td>
+        <td>DSA LAB</td>
+      </tr>
+      <tr>
+        <td class="heading">Wednesday</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td class="break">BREAK</td>
+        <td>TC</td>
+        <td>TC</td>
+        <td>Django</td>
+        <td>Django</td>
+      </tr>
+      <tr>
+        <td class="heading">Thursday</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td class="break">BREAK</td>
+        <td>ESD</td>
+        <td>ESD</td>
+        <td>DSA </td>
+        <td>DSA</td>
+      </tr>
+      <tr>
+        <td class="heading">Friday</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td>Workshop</td>
+        <td class="break">BREAK</td>
+        <td>TOC</td>
+        <td>TOC</td>
+        <td>DBMS</td>
+        <td>DBMS</td>
+      </tr>
+    </table>
+  </body>
+</html>

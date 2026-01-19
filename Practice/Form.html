@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Creative Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .eye {
+      width: 26px;
+      height: 26px;
+      background: white;
+      border-radius: 9999px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pupil {
+      width: 10px;
+      height: 10px;
+      background: black;
+      border-radius: 9999px;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      transition: transform 0.08s linear;
+    }
+
+    .hide-eyes .pupil {
+      transform: translateY(10px) !important;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+
+  <div id="scene" class="bg-white rounded-3xl shadow-xl w-[90%] max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+    <!-- LEFT CHARACTER AREA -->
+    <div class="flex items-center justify-center bg-gray-100 p-10">
+      <div id="character" class="relative transition-transform duration-100">
+
+        <!-- Purple body -->
+        <div class="w-44 h-64 bg-purple-500 rounded-[] relative ">
+
+          <!-- Eyes -->
+          <div class="absolute top-16 left-12 flex gap-6">
+            <div class="eye">
+              <div class="pupil"></div>
+            </div>
+            <div class="eye">
+              <div class="pupil"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Orange body -->
+        <div class="w-36 h-36 bg-orange-400 rounded-full absolute -bottom-6 -left-10">
+            <div class="absolute top-7 left-9 flex gap-6">
+                <div class="eye align-top">
+                  <div class="pupil"></div>
+                </div>
+                <div class="eye">
+                  <div class="pupil"></div>
+                </div>
+              </div>
+        </div>
+
+        <!-- Yellow body -->
+        <div class="w-28 h-40 bg-yellow-400 rounded-full absolute bottom-0 -right-8">
+            <div class="absolute top-12 left-5 flex gap-6">
+                <div class="eye align-top">
+                  <div class="pupil"></div>
+                </div>
+                <div class="eye">
+                  <div class="pupil"></div>
+                </div>
+              </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT FORM AREA -->
+    <div class="p-10 flex flex-col justify-center">
+      <h2 class="text-3xl font-bold mb-2">Welcome back!</h2>
+      <p class="text-gray-500 mb-6">Please enter your details</p>
+
+      <label class="text-sm mb-1">E-mail</label>
+      <input
+        type="email"
+        class="border-b-2 outline-none mb-6 py-2"
+        placeholder="aneetpadda@gmail.com"
+      />
+
+      <label class="text-sm mb-1">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="border-b-2 outline-none mb-6 py-2"
+        placeholder="********"
+      />
+
+      <button class="bg-black text-white py-3 rounded-full mb-4">
+        Log In
+      </button>
+
+      <button class="border py-3 rounded-full flex items-center justify-center gap-2">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5">
+        Log in with Google
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    if (!('ontouchstart' in window)) {
+  
+      const eyes = document.querySelectorAll(".eye");
+      const character = document.getElementById("character");
+      const scene = document.getElementById("scene");
+      const password = document.getElementById("password");
+  
+      document.addEventListener("mousemove", (e) => {
+        eyes.forEach(eye => {
+          const pupil = eye.querySelector(".pupil");
+          const rect = eye.getBoundingClientRect();
+  
+          const eyeX = rect.left + rect.width / 2;
+          const eyeY = rect.top + rect.height / 2;
+  
+          const dx = e.clientX - eyeX;
+          const dy = e.clientY - eyeY;
+  
+          const angle = Math.atan2(dy, dx);
+          const radius = 6;
+  
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+  
+          pupil.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+  
+      scene.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  
+        character.style.transform = `
+          rotateY(${x}deg)
+          rotateX(${-y}deg)
+        `;
+      });
+  
+      password.addEventListener("focus", () => {
+        document.body.classList.add("hide-eyes");
+      });
+  
+      password.addEventListener("blur", () => {
+        document.body.classList.remove("hide-eyes");
+      });
+  
+    }
+  </script>
+  
+
+</body>
+</html>
