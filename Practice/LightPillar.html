@@ -1,43 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Document</title>
-    <style>
-        :root{
-            --color: rgba(251, 255, 1, 0.2);
-        }
-        body{
-
-            background-image: url('https://thewowstyle.com/wp-content/uploads/2015/01/nature-images..jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Light Pillar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="flex justify-center items-center h-screen">
-    <div class="mt-0.5 backdrop-blur-sm bg-[var(--color)] /10 p-6 grid-cols-1 itemms-center justify-items-center w-85 border rounded-lg border-tranparent ">
-        <h1 class="font-bold">Login</h1>
-        <form class="grid grid-cols-1  p-3">
-            <label for="email" class="text-semibold">Email</label>
-            <span><input type="email" name="Email" id="" class="border rounded-lg"><i class="border fa-solid fa-address-book"></i></span>
-            <label for="password">Password</label>
-            <span><input type="password" name="Password" id="" class="border rounded-lg"><i class="fa-sharp fa-solid fa-lock"></i></span>
-            <div>
-                <input type="checkbox" name="Remember me" id="">
-                <label for="remember me">Remember me</label>
-                <a href="">Forget Password</a>
-            </div>
-            <button type="submit" class="border rounded-lg" >Log in</button>
-            <div>
-                <a href="">Don't have an account?</a>
-                <a href="">Register</a>
-            </div>
-        </form>
-    </div>
+
+<body>
+
+  <!-- React mounts here -->
+  <div id="react-root"></div>
+
+  <!-- 1️⃣ React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- 2️⃣ Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 3️⃣ Your React code -->
+  <script type="text/babel" src="LightPillar.js"></script>
+
 </body>
 </html>
