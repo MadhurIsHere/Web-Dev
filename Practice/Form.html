@@ -9,6 +9,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    @keyframes breathe {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    #character.idle {
+      animation: breathe 3s ease-in-out infinite;
+    }
+
     .eye {
       width: 26px;
       height: 26px;
@@ -81,6 +90,17 @@
                 </div>
               </div>
         </div>
+        <!-- Black -->
+        <div class="w-24 h-20 bg-black rounded-full absolute bottom-0 -right-8">
+            <div class="absolute top-12 left-5 flex gap-6">
+                <div class="eye align-top">
+                  <div class="pupil"></div>
+                </div>
+                <div class="eye">
+                  <div class="pupil"></div>
+                </div>
+              </div>
+        </div>
 
       </div>
     </div>
@@ -117,56 +137,93 @@
 
   </div>
 
-  <script>
-    if (!('ontouchstart' in window)) {
-  
-      const eyes = document.querySelectorAll(".eye");
-      const character = document.getElementById("character");
-      const scene = document.getElementById("scene");
-      const password = document.getElementById("password");
-  
-      document.addEventListener("mousemove", (e) => {
-        eyes.forEach(eye => {
-          const pupil = eye.querySelector(".pupil");
-          const rect = eye.getBoundingClientRect();
-  
-          const eyeX = rect.left + rect.width / 2;
-          const eyeY = rect.top + rect.height / 2;
-  
-          const dx = e.clientX - eyeX;
-          const dy = e.clientY - eyeY;
-  
-          const angle = Math.atan2(dy, dx);
-          const radius = 6;
-  
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-  
-          pupil.style.transform = `translate(${x}px, ${y}px)`;
-        });
-      });
-  
-      scene.addEventListener("mousemove", (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  
-        character.style.transform = `
-          rotateY(${x}deg)
-          rotateX(${-y}deg)
+<script>
+  if (!('ontouchstart' in window)) {
+
+    const eyes = document.querySelectorAll(".eye");
+    const character = document.getElementById("character");
+    const scene = document.getElementById("scene");
+    const password = document.getElementById("password");
+    const email = document.querySelector('input[type="email"]');
+
+    let trackEyes = true;
+
+    // 👀 Eye tracking
+    document.addEventListener("mousemove", (e) => {
+      if (!trackEyes) return;
+
+      eyes.forEach(eye => {
+        const pupil = eye.querySelector(".pupil");
+        const rect = eye.getBoundingClientRect();
+
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+
+        const dx = e.clientX - eyeX;
+        const dy = e.clientY - eyeY;
+
+        const angle = Math.atan2(dy, dx);
+        const radius = 6;
+
+        pupil.style.transform = `
+          translate(
+            ${Math.cos(angle) * radius}px,
+            ${Math.sin(angle) * radius}px
+          )
         `;
       });
-  
-      password.addEventListener("focus", () => {
-        document.body.classList.add("hide-eyes");
-      });
-  
-      password.addEventListener("blur", () => {
-        document.body.classList.remove("hide-eyes");
-      });
-  
-    }
-  </script>
-  
+    });
+
+    // 🧍 Scene tilt (parallax body movement)
+    scene.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+      character.style.transform = `
+        rotateY(${x}deg)
+        rotateX(${-y}deg)
+        translateY(-4px)
+      `;
+    });
+
+    // 📧 Email focus → lean forward & engage
+    email.addEventListener("focus", () => {
+      character.classList.remove("idle");
+      character.style.transform = `
+        translateY(-10px)
+        scale(1.05)
+      `;
+    });
+
+    email.addEventListener("blur", () => {
+      character.classList.add("idle");
+      character.style.transform = "";
+    });
+
+    // 🔒 Password focus → shy mode
+    password.addEventListener("focus", () => {
+      trackEyes = false;
+      document.body.classList.add("hide-eyes");
+
+      character.style.transform = `
+        translateY(6px)
+        rotateZ(-2deg)
+        scale(0.98)
+      `;
+    });
+
+    password.addEventListener("blur", () => {
+      trackEyes = true;
+      document.body.classList.remove("hide-eyes");
+      character.classList.add("idle");
+      character.style.transform = "";
+    });
+
+    // start idle animation
+    character.classList.add("idle");
+  }
+</script>
+
 
 </body>
 </html>
